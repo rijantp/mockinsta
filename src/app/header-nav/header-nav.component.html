@@ -1,0 +1,17 @@
+<!-- <mat-toolbar color="primary">
+   <div class="spacer"></div>
+     <a mat-button routerLink="/home">Home</a>
+     <a mat-button routerLink="/posts" >posts</a>
+ </mat-toolbar> -->
+ <!-- <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+  <mat-tab label="First">Content 1</mat-tab>
+  <mat-tab label="Second">Content 2</mat-tab>
+  <mat-tab label="Third">Content 3</mat-tab>
+</mat-tab-group> -->
+<nav mat-tab-nav-bar backgroundColor="primary" [tabPanel]="tabPanel" mat-stretch-tabs="false">
+  <a mat-tab-link *ngFor="let link of links"
+  [routerLink]="link.path"
+     (click)="activeLink = link"
+     [active]="activeLink == link"> {{link.title}} </a>
+</nav>
+<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
