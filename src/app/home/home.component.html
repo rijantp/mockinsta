@@ -1,1 +1,15 @@
-<p>home works!</p>
+<div class="post-container">
+  <mat-card *ngFor="let user of usersList$ |async" class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar >
+        <img mat-card-image height="40px" width="40px" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      </div>
+      <mat-card-title>{{user.userName}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+
+  </mat-card>
+  </div>
+<button (click)="openDialog" style="position: absolute;right: 10px;bottom: 30px;" mat-fab color="primary" aria-label="Example icon button with a heart icon">
+  <mat-icon>add</mat-icon>
+</button>

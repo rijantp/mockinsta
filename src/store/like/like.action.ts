@@ -5,3 +5,13 @@ export const addLike = createAction(
   '[Counter] AddLike',
   props<{ payLoad: UserPost }>()
 )
+
+export const addPost = createAction(
+  '[Counter] AddPost',
+  props<{ payLoad: UserPost }>()
+)
+
+export const addPosts = createAction(
+  '[Counter] AddPosts',
+  props<{ payLoad: UserPost[] }>()
+)

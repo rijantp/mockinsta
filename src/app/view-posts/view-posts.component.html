@@ -1,7 +1,9 @@
 <div class="post-container">
 <mat-card *ngFor="let post of postsList$ |async" class="example-card">
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
+    <div mat-card-avatar >
+      <img mat-card-image height="40px" width="40px" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    </div>
     <mat-card-title>{{post.title}}</mat-card-title>
     <mat-card-subtitle>{{post.subTitle}}</mat-card-subtitle>
   </mat-card-header>
@@ -20,3 +22,6 @@
   </mat-card-footer>
 </mat-card>
 </div>
+<button (click)="openDialog()" style="position: absolute;right: 10px;bottom: 30px;" mat-fab color="primary" aria-label="Example icon button with a heart icon">
+  <mat-icon>add</mat-icon>
+</button>

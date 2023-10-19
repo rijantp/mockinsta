@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Add a user</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="addPostForm">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input formControlName="title" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>SubTitle</mat-label>
+      <input formControlName="subTitle" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input formControlName="description" matInput>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button color="primary" [mat-dialog-close]="false">Cancel</button>
+  <button mat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Save User</button>
+</mat-dialog-actions>

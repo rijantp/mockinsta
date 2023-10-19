@@ -15,15 +15,30 @@ import { MatTabsModule } from '@angular/material/tabs'
 
 import { StoreModule } from '@ngrx/store'
 import { userPostReducer } from 'src/store/like/like.reducer'
+import { userReducer } from 'src/store/user/user.reducer'
+import { AddUserFormComponent } from './home/add-user-form/add-user-form.component'
+import { MatDialogModule } from '@angular/material/dialog'
+import { ReactiveFormsModule } from '@angular/forms'
+import { MatSelectModule } from '@angular/material/select'
+import { MatInputModule } from '@angular/material/input'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { AddPostFormComponent } from './view-posts/add-post-form/add-post-form.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderNavComponent,
     ViewPostsComponent,
-    HomeComponent
+    HomeComponent,
+    AddUserFormComponent,
+    AddPostFormComponent
   ],
   imports: [
+    MatSelectModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatDialogModule,
     MatTabsModule,
     MatCardModule,
     BrowserModule,
@@ -33,7 +48,8 @@ import { userPostReducer } from 'src/store/like/like.reducer'
     MatToolbarModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({
-      userPosts: userPostReducer
+      userPosts: userPostReducer,
+      users: userReducer
     })
   ],
   providers: [],
