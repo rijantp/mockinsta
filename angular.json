@@ -5,6 +5,15 @@
   "projects": {
     "mockinsta": {
       "projectType": "application",
+      "i18n": {
+      "sourceLocale": "en-US", 
+      "locales": { 
+        "it": { 
+          "translation": "src/locale/messages.it.xlf",
+          "baseHref": "it/"
+        }
+      }
+    },
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
@@ -17,6 +26,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": true,
+            "i18nMissingTranslation":"error", 
             "outputPath": "dist/mockinsta",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -36,6 +47,9 @@
             "scripts": []
           },
           "configurations": {
+            "it": {
+              "localize": ["it"]
+            },
             "production": {
               "budgets": [
                 {
@@ -65,6 +79,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
+            "it": {
+              "browserTarget": "mockinsta:build:development,it" 
+            },
             "production": {
               "browserTarget": "mockinsta:build:production"
             },
@@ -77,7 +94,9 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mockinsta:build"
+            "browserTarget": "mockinsta:build",
+            "format": "xlf",
+            "outputPath": "src/locale"
           }
         },
         "test": {

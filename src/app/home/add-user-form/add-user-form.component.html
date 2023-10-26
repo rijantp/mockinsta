@@ -2,7 +2,7 @@
 <mat-dialog-content class="mat-typography">
   <form [formGroup]="addUserForm">
     <mat-form-field>
-      <mat-label>Name</mat-label>
+      <mat-label i18n="@@name">Name</mat-label>
       <input formControlName="userName" matInput>
       <mat-error *ngIf="addUserForm.controls['userName'].hasError('required')">Please enter a name</mat-error>
       <mat-error *ngIf="addUserForm.controls['userName'].hasError('prohibitedName')">Prohibited name</mat-error>
