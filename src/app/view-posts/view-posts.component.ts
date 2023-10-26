@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
 import { Store } from '@ngrx/store'
 import { type Observable } from 'rxjs'
-import { addLike } from 'src/store/like/like.action'
-import { selectPosts } from 'src/store/like/like.selector'
+import { addLike, addPosts } from 'src/store/like/like.action'
+import { selectSortPosts } from 'src/store/like/like.selector'
 import { type UserPost } from 'src/store/model/UserPost.model'
 import { type AppState } from 'src/store/model/app.state'
 import { AddPostFormComponent } from './add-post-form/add-post-form.component'
+import { ApiService } from 'src/services/api.service'
 
 @Component({
   selector: 'app-view-posts',
@@ -14,11 +15,17 @@ import { AddPostFormComponent } from './add-post-form/add-post-form.component'
   styleUrls: ['./view-posts.component.scss']
 })
 export class ViewPostsComponent {
-  public postsList$: Observable<UserPost[]>
+  postsList$: Observable<UserPost[]>
+  apiService = inject(ApiService)
 
   private readonly store: Store<AppState> = inject(Store)
   public constructor () {
-    this.postsList$ = this.store.select(selectPosts)
+    this.postsList$ = this.store.select(selectSortPosts)
+    this.apiService.getPosts().subscribe((value) => {
+      console.log(value)
+
+      this.store.dispatch(addPosts({ payLoad: value }))
+    })
   }
 
   public onLike (post: UserPost): void {
@@ -31,7 +38,11 @@ export class ViewPostsComponent {
     const dialogRef = this.dialog.open(AddPostFormComponent, { disableClose: true })
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`)
+      if (result) {
+        this.apiService.createPost(result).subscribe(value => {
+          console.log(value)
+        })
+      }
     })
   }
 }

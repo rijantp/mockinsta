@@ -13,9 +13,18 @@
       <mat-label>Description</mat-label>
       <input formControlName="description" matInput>
     </mat-form-field>
+    <div>
+      <button (click)="fileInput.click()" mat-fab color="primary">
+        <mat-icon>picture_in_picture_alt</mat-icon>
+      </button>
+      <input style="display: none;" (change)="onImageUpload($event)" #fileInput type="file" >
+    </div>
+    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && addPostForm.controls['image'].valid">
+      <img [src]="imagePreview" [alt]="addPostForm.value.title">
+    </div>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button color="primary" [mat-dialog-close]="false">Cancel</button>
-  <button mat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Save User</button>
+  <button mat-button color="primary" [mat-dialog-close]="addPostForm.value" cdkFocusInitial>Save User</button>
 </mat-dialog-actions>

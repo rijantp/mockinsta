@@ -1,10 +1,8 @@
 import { createReducer, on } from '@ngrx/store'
 import { type UserPost } from '../model/UserPost.model'
-import { addLike } from './like.action'
+import { addLike, addPosts } from './like.action'
 
-const initialState: UserPost[] = [
-  { likesCount: 0, isLiked: false, _id: '1', title: 'nice evening', subTitle: 'geneva', desc: 'good evening frieds' }
-]
+const initialState: UserPost[] = []
 
 export const userPostReducer = createReducer(
   initialState,
@@ -19,4 +17,19 @@ export const userPostReducer = createReducer(
       isLiked: !action.payLoad.isLiked
     }]
   }
-  ))
+  ),
+  on(addLike, (state = initialState, action) => {
+    state.forEach((post: UserPost) => {
+      if (post._id === action.payLoad._id) {
+        post.likesCount = action.payLoad.isLiked
+          ? action.payLoad.likesCount - 1
+          : action.payLoad.likesCount + 1
+        post.isLiked = !action.payLoad.isLiked
+      }
+    })
+    return [...state]
+  }
+  ),
+  on(addPosts, (state, action) => {
+    return [...state, ...action.payLoad]
+  }))

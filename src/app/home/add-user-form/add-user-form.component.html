@@ -4,14 +4,26 @@
     <mat-form-field>
       <mat-label>Name</mat-label>
       <input formControlName="userName" matInput>
+      <mat-error *ngIf="addUserForm.controls['userName'].hasError('required')">Please enter a name</mat-error>
+      <mat-error *ngIf="addUserForm.controls['userName'].hasError('prohibitedName')">Prohibited name</mat-error>
     </mat-form-field>
+    
     <mat-form-field>
       <mat-label>Password</mat-label>
-      <input formControlName="password" matInput>
+      <input type="password" formControlName="password" matInput>
+      <mat-error *ngIf="addUserForm.controls['password'].hasError('required')">password required</mat-error>
     </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Confirm Password</mat-label>
+      <input type="password" formControlName="confirmPassword" matInput>
+      <mat-error *ngIf="addUserForm.controls['confirmPassword'].hasError('required')">password required</mat-error>
+      <!-- <mat-error *ngIf="addUserForm.hasError('noMatch')">Password not match</mat-error> -->
+    </mat-form-field>
+    <mat-error *ngIf="addUserForm.hasError('noMatch')">Password not match</mat-error>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Save User</button>
+  <button mat-button [disabled]="!addUserForm.valid" [mat-dialog-close]="true" cdkFocusInitial>Save User</button>
 </mat-dialog-actions>

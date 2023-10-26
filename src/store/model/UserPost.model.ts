@@ -6,4 +6,5 @@ export interface UserPost {
   likesCount: number
   comments?: string[]
   isLiked: boolean
+  createdAt: string
 }

@@ -21,8 +21,9 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { ReactiveFormsModule } from '@angular/forms'
 import { MatSelectModule } from '@angular/material/select'
 import { MatInputModule } from '@angular/material/input'
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field'
 import { AddPostFormComponent } from './view-posts/add-post-form/add-post-form.component'
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { AddPostFormComponent } from './view-posts/add-post-form/add-post-form.c
     AddPostFormComponent
   ],
   imports: [
+    HttpClientModule,
     MatSelectModule,
     MatInputModule,
     MatFormFieldModule,
